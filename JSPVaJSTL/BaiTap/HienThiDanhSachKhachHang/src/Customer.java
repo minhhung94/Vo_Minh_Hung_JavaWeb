@@ -2,16 +2,16 @@ import java.util.Date;
 
 public class Customer {
     private String name;
-    private String ngaysinh;
+    private String hireDate;
     private String address;
     private String image;
 
     public Customer() {
     }
 
-    public Customer(String name, String ngaysinh, String address, String image) {
+    public Customer(String name, String hireDate, String address, String image) {
         this.name = name;
-        this.ngaysinh = ngaysinh;
+        this.hireDate = hireDate;
         this.address = address;
         this.image = image;
     }
@@ -24,12 +24,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getNgaysinh() {
-        return ngaysinh;
+    public String getHireDate() {
+        return hireDate;
     }
 
-    public void setNgaysinh(String ngaysinh) {
-        this.ngaysinh = ngaysinh;
+    public void setHireDate(String hireDate) {
+        this.hireDate = hireDate;
     }
 
     public String getAddress() {
