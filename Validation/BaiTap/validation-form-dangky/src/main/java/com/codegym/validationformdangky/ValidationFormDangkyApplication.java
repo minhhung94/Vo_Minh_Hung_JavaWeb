@@ -1,13 +1,13 @@
-package com.codegym.validateinforuser;
+package com.codegym.validationformdangky;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ValidateInforUserApplication {
+public class ValidationFormDangkyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ValidateInforUserApplication.class, args);
+        SpringApplication.run(ValidationFormDangkyApplication.class, args);
     }
 
 }

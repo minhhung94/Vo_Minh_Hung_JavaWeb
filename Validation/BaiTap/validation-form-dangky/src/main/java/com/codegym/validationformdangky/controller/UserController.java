@@ -1,6 +1,6 @@
-package com.codegym.validateinforuser.controller;
+package com.codegym.validationformdangky.controller;
 
-import com.codegym.validateinforuser.model.User;
+import com.codegym.validationformdangky.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     @GetMapping("/user")
     public ModelAndView showForm() {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("/user/index");
         modelAndView.addObject("user", new User());
         return modelAndView;
     }
@@ -21,10 +21,10 @@ public class UserController {
     @PostMapping("/validateUser")
     public ModelAndView checkValidation(@Validated @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
-            ModelAndView modelAndView = new ModelAndView("index");
+            ModelAndView modelAndView = new ModelAndView("/user/index");
             return modelAndView;
         }
-        ModelAndView modelAndView = new ModelAndView("result");
+        ModelAndView modelAndView = new ModelAndView("/user/result");
         return modelAndView;
     }
 }
