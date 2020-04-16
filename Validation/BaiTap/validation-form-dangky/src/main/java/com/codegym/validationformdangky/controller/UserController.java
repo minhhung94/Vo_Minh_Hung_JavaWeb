@@ -1,6 +1,8 @@
 package com.codegym.validationformdangky.controller;
 
 import com.codegym.validationformdangky.model.User;
+import com.codegym.validationformdangky.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -9,8 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class UserController {
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/user")
     public ModelAndView showForm() {
         ModelAndView modelAndView = new ModelAndView("/user/index");
@@ -24,7 +31,16 @@ public class UserController {
             ModelAndView modelAndView = new ModelAndView("/user/index");
             return modelAndView;
         }
+        userService.save(user);
         ModelAndView modelAndView = new ModelAndView("/user/result");
+        return modelAndView;
+    }
+
+    @GetMapping("/list")
+    public ModelAndView listUsers(){
+        List<User> users = userService.findAll();
+        ModelAndView modelAndView = new ModelAndView("/user/list");
+        modelAndView.addObject("users", users);
         return modelAndView;
     }
 }

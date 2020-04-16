@@ -1,21 +1,31 @@
 package com.codegym.validationformdangky.model;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+@Entity
+@Table(name = "users")
 public class User {
-    @NotEmpty
-    @Size(min = 5, max = 45)
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
+    @NotNull(message = "Không được để trống")
+    @Size(min=5,max = 45,message = "Tên phải gồm từ 5-45 ký tự")
     private String firstName;
-    @NotEmpty
-    @Size(min = 5, max = 45)
+
+    @NotNull(message = "Không được để trống")
+    @Size(min=5,max = 45,message = "Họ phải gồm từ 5-45 ký tự")
     private String lastName;
-    @Min(18)
+
+    @Min(value = 18,message = "Tuổi phải >=18")
     private int age;
-    @Pattern(regexp = "(\\+84|0)[0-9]{9}")
+
+    @NotEmpty
+    @Pattern(regexp = "(0)[0-9]{9}", message ="Số ĐT phải có 10 số và bắt đầu bằng số 0" )
     private String phoneNumber;
+
+    @Email(message = "Email không đúng định dạng")
     private String email;
 
     public String getFirstName() {
@@ -50,4 +60,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

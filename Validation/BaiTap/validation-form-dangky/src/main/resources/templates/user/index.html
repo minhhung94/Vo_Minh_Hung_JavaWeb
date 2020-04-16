@@ -4,6 +4,8 @@
     <title>Form</title>
 </head>
 <body>
+<a href="/list">List User</a>
+<br>
 <form action="#" th:action="@{/validateUser}" th:object="${user}" method="post" >
     <table>
         <tr>
@@ -25,6 +27,11 @@
             <td>Age:</td>
             <td><input th:field="*{age}"></td>
             <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input th:field="*{email}"></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
         </tr>
         <tr>
             <td>
