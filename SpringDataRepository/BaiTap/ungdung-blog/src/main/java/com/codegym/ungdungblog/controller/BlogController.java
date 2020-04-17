@@ -105,8 +105,7 @@ public class BlogController {
 
     @GetMapping("/blogs/{id}")
     public ModelAndView listBlogs2(@PathVariable("id") Long id, Pageable pageable) {
-        Category category = categoryService.findById(id);
-        Page<Blog> blogs = blogService.findAllByCategory(category, pageable);
+        Page<Blog> blogs = blogService.findByCategory_Id(id, pageable);
         ModelAndView modelAndView = new ModelAndView("/blog/list");
         modelAndView.addObject("blogs", blogs);
         return modelAndView;

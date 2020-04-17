@@ -25,6 +25,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Page<Blog> findByCategory_Id(Long id, Pageable pageable) {
+        return blogRepository.findByCategory_Id(id,pageable);
+    }
+
+    @Override
     public Blog findById(Long id) {
         return blogRepository.findById(id).orElse(null);
     }

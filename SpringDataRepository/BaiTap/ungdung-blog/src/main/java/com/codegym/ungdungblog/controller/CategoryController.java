@@ -52,7 +52,7 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @GetMapping("eidt-category/{id}")
+    @GetMapping("edit-category/{id}")
     public ModelAndView showCategory(@PathVariable Long id){
         Category category = categoryService.findById(id);
         if(category !=null){
@@ -60,7 +60,7 @@ public class CategoryController {
             modelAndView.addObject("category",category);
             return modelAndView;
         }else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
+            ModelAndView modelAndView = new ModelAndView("/category/error404");
             return modelAndView;
         }
     }

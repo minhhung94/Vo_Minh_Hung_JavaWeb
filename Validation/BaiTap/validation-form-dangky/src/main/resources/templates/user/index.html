@@ -9,13 +9,13 @@
 <form action="#" th:action="@{/validateUser}" th:object="${user}" method="post" >
     <table>
         <tr>
-            <td>Fist Name:</td>
-            <td><input th:field="*{firstName}"></td>
+            <td>First Name:</td>
+            <td><input th:field="*{firstName}" placeholder="First Name"></td>
             <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
         </tr>
         <tr>
             <td>Last Name:</td>
-            <td><input th:field="*{lastName}"></td>
+            <td><input th:field="*{lastName}" placeholder="Last Name"></td>
             <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
         </tr>
         <tr>
@@ -25,12 +25,12 @@
         </tr>
         <tr>
             <td>Age:</td>
-            <td><input th:field="*{age}"></td>
+            <td><input th:field="*{age}" placeholder="Age"></td>
             <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
         </tr>
         <tr>
             <td>Email:</td>
-            <td><input th:field="*{email}"></td>
+            <td><input th:field="*{email}" placeholder="Email"></td>
             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
         </tr>
         <tr>
