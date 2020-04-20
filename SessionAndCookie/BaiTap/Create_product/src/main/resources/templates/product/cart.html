@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <script>
+        function changeTotal(price, quantity,id) {
+            document.getElementById(id).innerText = price * quantity;
+        }
+    </script>
+</head>
+<body>
+<h1>Cart</h1>
+<form th:action="@{/deleteCart}" method="post">
+<table border="1">
+    <tr>
+        <td>STT</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Amount</td>
+        <td>Huy</td>
+    </tr>
+    <th:block th:each="c,cindex : ${cart.products}">
+    <tr>
+        <td th:text="${cindex.index+1}"></td>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.price}">VND</td>
+        <td><input  type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value,'+${c.id}+')'" >VND</td>
+        <td th:id="${c.id}"  th:text="${c.price}*1" th:name="pay"></td>
+        <td><input type="submit" value="Huỷ Mua"></td>
+    </tr>
+    </th:block>
+    <tr>
+        <td colspan="2"><a href="/products">Mua Tiếp</a></td>
+        <td><a href="/pay">Thanh Toán</a></td>
+        <td><a href="#" id="pay" th:value="0"></a></td>
+    </tr>
+
+</table>
+</form>
+</body>
+</html>
