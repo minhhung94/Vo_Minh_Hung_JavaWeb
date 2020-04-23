@@ -108,16 +108,19 @@ public class ProductController {
         productService.remove(product.getId());
         return "redirect:products";
     }
-    @PostMapping("/deleteCart")
-    public String delete(@ModelAttribute("cart") Cart cart){
-        Product product = new Product();
-        for (Product product1:cart.getProducts()) {
-            product = product1;
-        }
-        cart.delete(product.getId());
-        return "redirect:cart";
+//    @PostMapping("/deleteCart")
+//    public String delete(@ModelAttribute("cart") Cart cart){
+//        Product product = new Product();
+//
+//        cart.delete(product.getId());
+//        return "redirect:cart";
+//    }
+    @GetMapping("cart-remove/{id}")
+    public ModelAndView removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("id")Long id) {
+        cart.delete(id);
+        return Cart(cart);
+    //        return "redirect:cart";
     }
-
     @GetMapping("cart/{id}")
     public ModelAndView addProduct(@ModelAttribute("cart") Cart cart, @PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("/product/cart");
@@ -141,9 +144,4 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("pay")
-    public ModelAndView Pay() {
-        ModelAndView modelAndView = new ModelAndView("/product/totalPrice");
-        return modelAndView;
-    }
 }
