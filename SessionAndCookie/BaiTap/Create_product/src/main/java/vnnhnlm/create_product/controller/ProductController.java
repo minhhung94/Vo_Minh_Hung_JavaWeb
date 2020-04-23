@@ -109,22 +109,28 @@ public class ProductController {
         return "redirect:products";
     }
     @PostMapping("/deleteCart")
-    public String delete(@ModelAttribute("cart") Cart cart, RedirectAttributes redirect){
+    public String delete(@ModelAttribute("cart") Cart cart){
         Product product = new Product();
         for (Product product1:cart.getProducts()) {
             product = product1;
         }
         cart.delete(product.getId());
-        redirect.addFlashAttribute("success","delete product to Gio Hang success");
         return "redirect:cart";
     }
 
     @GetMapping("cart/{id}")
     public ModelAndView addProduct(@ModelAttribute("cart") Cart cart, @PathVariable("id") Long id) {
-        Product product = productService.findById(id);
-        cart.addToCart(product);
         ModelAndView modelAndView = new ModelAndView("/product/cart");
         modelAndView.addObject("cart", cart);
+        Product product = productService.findById(id);
+        for(Product product1 : cart.getProducts()){
+            if (product1.getId()==id ) {
+                modelAndView.addObject("message", "You bought this product");
+                return modelAndView;
+            }
+        }
+        cart.addToCart(product);
+        modelAndView.addObject("message","Product bought successfully");
         return modelAndView;
     }
 
